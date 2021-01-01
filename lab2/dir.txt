@@ -1,0 +1,4 @@
+total 8.0K
+drwxrwxr-x 2 spencerbarrett spencerbarrett 4.0K Dec 31 17:25 .
+drwxrwxr-x 5 spencerbarrett spencerbarrett 4.0K Dec 31 13:08 ..
+-rw-rw-r-- 1 spencerbarrett spencerbarrett    0 Dec 31 17:25 dir.txt
