@@ -1,0 +1,23 @@
+
+rosrun image_view image_view image:=/rgb_camera/image_raw
+rostopic pub -1 /simple_arm/joint_1_position_controller/command std_msgs/Float64 "data: 0.5"
+
+
+From the URL: https://github.com/udacity/simple_arm/blob/master/README.md
+
+I created a new robot from scratch using the following commands
+
+  $ cd ~/catkin_ws 
+  $ rosdep install --from-paths src --ignore-src --rosdistro=kinetic -y
+  $ catkin_make
+  $ source ~/catkin_ws/devel/setup.bash  gd
+  $ roslaunch simple_arm robot_spawn.launch
+
+The Gazebo simulator starts to swing the arm +/-pi after about 5 seconds after launch - but I am not sending the arm any command?   From the above URL - it shows how to publish cmds to the arm - but they have no effect - you can view the camera and see the arm swinging.. 
+
+I can also echo topics and see no commands are being published
+
+
+https://answers.ros.org/question/256820/warn-controller-spawner-couldnt-find-the-expected-controller_manager-ros-interface/
+
+sudo apt-get install ros-kinetic-ros-control ros-kinetic-joint-state-controller ros-kinetic-effort-controllers ros-kinetic-position-controllers ros-kinetic-velocity-controllers ros-kinetic-ros-controllers ros-kinetic-gazebo-ros ros-kinetic-gazebo-ros-control
