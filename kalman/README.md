@@ -67,13 +67,15 @@
 # rqt_multiplot 
 PLOTTING X/Y positions of Filtered estimate vs sensor
  -  ROS plugin doc https://github.com/ethz-asl/rqt_multiplot_plugin
- - Install
+
+## Install
 ```
  apt-get install ros-kinetic-rqt -y
  apt-get install ros-kinetic-rqt-multiplot -y
  apt-get install libqwt-dev -y
  rm -rf ~/.config/ros.org/rqt_gui.ini
 ```
-Sample plot from driving robot
+
+## Sample plot from driving robot
 ![](images/rqt_multiplot_Xpos_vs_Ypos.png) 
 
