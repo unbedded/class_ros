@@ -230,6 +230,7 @@ void visualization(int n, Robot robot, int step, Robot p[], Robot pr[])
 
 int main()
 {
+
     //Practice Interfacing with Robot Class
     Robot myrobot;
     myrobot.set_noise(5.0, 0.1, 5.0);
@@ -253,107 +254,59 @@ int main()
     myrobot = Robot();
     vector<double> z;
 
-    //Move the robot and sense the environment afterwards
-    myrobot = myrobot.move(0.1, 5.0);
-    z = myrobot.sense();
-
-    // Simulate a robot motion for each of these particles
-    Robot p2[n];
-    for (int i = 0; i < n; i++)
+    //Iterating 50 times over the set of particles
+    int steps = 50;
+    for (int t = 0; t < steps; t++)
     {
-        p2[i] = p[i].move(0.1, 5.0);
-        p[i] = p2[i];
-    }
 
-    //Generate particle weights depending on robot's measurement
-    double w[n];
-    for (int i = 0; i < n; i++)
-    {
-        w[i] = p[i].measurement_prob(z);
-        //cout << w[i] << endl;
-    }
+        //Move the robot and sense the environment afterwards
+        myrobot = myrobot.move(0.1, 5.0);
+        z = myrobot.sense();
 
-    //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
-    const int n_particles = n;
-    int idx = (int)(floor(n_particles * gen_real_random()));
-    vector<double> weights;
-    vector<Robot> resample;
-    for (double wx : w)
-    {
-        weights.push_back(wx);
-    }
-    auto weight_max_it = std::max_element(weights.begin(), weights.end()); // std::vector<double>::iterator
-    double weight_max = *weight_max_it;
-    int weight_max_idx = std::distance(weights.begin(), weight_max_it);
-    cout << "MaxWeight:" << weight_max << "  @[]:" << weight_max_idx;
-
-    double beta = 0;
-    for (int particle_idx = 0; particle_idx < n_particles; particle_idx++)
-    {
-        const double beta_rand_inc = 2 * weight_max * gen_real_random();
-        beta += beta_rand_inc;
-        while (weights[idx] < beta)
+        // Simulate a robot motion for each of these particles
+        Robot p2[n];
+        for (int i = 0; i < n; i++)
         {
-            beta -= weights[idx];
-            idx = mod((idx + 1), n_particles);
+            p2[i] = p[i].move(0.1, 5.0);
+            p[i] = p2[i];
         }
-        resample.push_back(p[idx]);
-    }
-    std::vector<double> x, y;
-    for (int i = 0; i < n; i++)
-    {
-        x.push_back(resample[i].x);
-        y.push_back(resample[i].y);
-    }
-    plt::scatter(x, y);
-    plt::show();
-    for (int k = 0; k < n; k++)
-    {
-        // p[k] = resample[k];
-        cout << resample[k].show_pose() << endl;
-    }
-#if 0    
-    const int histo_size = 20;
-    vector<double> histo(histo_size, 0);
-    for (auto w : p)
-    {
-        histo[(histo_size * random_idx) / n]++;
-    }
-    
-    /*    
 
-    //    plt::plot(histo);
-    for (auto h : histo)
-    {
-        //    plt::plot((double)i++, (double)h, "bo");
-        cout << h << endl;
-    }
-    std::vector<double> x(histo_size, 0.0);
-    for(int i=0; i<histo.size(); i++){x[i]=i;}
-    plt::xkcd();
-//    plt::plot(histo);
-    plt::bar(x, histo);
-*/
-
-    plt::title("MCL, step ");
-    double gain = 100000000.0;
-    std::vector<double> x, y, zz;
-    for (int i = 0; i < n; i++)
-    {
-        x.push_back(p[i].x);
-        y.push_back(p[i].y);
-        double tmp = w[i] * gain;
-        if (tmp > 0.0001)
+        //Generate particle weights depending on robot's measurement
+        double w[n];
+        for (int i = 0; i < n; i++)
         {
-            zz.push_back(tmp);
+            w[i] = p[i].measurement_prob(z);
+            //cout << w[i] << endl;
         }
-    }
-    //plt::scatter(x, y);
-    plt::hist(zz, 500);
-    plt::show();
-    string graph = "./minimal.pdf";
-    plt::save(graph);
-#endif
 
+        //Resample the particles with a sample probability proportional to the importance weight
+        Robot p3[n];
+        int index = gen_real_random() * n;
+        //cout << index << endl;
+        double beta = 0.0;
+        double mw = max(w, n);
+        //cout << mw;
+        for (int i = 0; i < n; i++)
+        {
+            beta += gen_real_random() * 2.0 * mw;
+            while (beta > w[index])
+            {
+                beta -= w[index];
+                index = mod((index + 1), n);
+            }
+            p3[i] = p[index];
+        }
+        for (int k = 0; k < n; k++)
+        {
+            p[k] = p3[k];
+            //cout << p[k].show_pose() << endl;
+        }
+
+        //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
+        auto ErrorValue = evaluation(myrobot, p, n);
+        // TODO: Evaluate the error by priting it in this form:
+        cout << "Step = " << t << ", Evaluation = " << ErrorValue << endl;
+
+    } //End of Steps loop
     return 0;
 }
