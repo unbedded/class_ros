@@ -3,4 +3,9 @@
 */.catkin_workspace
 */turtlebot_simulator/
 *.swp
+kalman/src/odom_to_trajectory/
+kalman/src/robot_pose_ekf/
+kalman/src/turtlebot/
+kalman/src/turtlebot_simulator/
+mcl/src/robot
 

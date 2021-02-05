@@ -1,5 +1,13 @@
 # ROS Monte Carlo Localization
 
+				"-std=c++11",
+				"-I",
+				"/usr/include/python2.7",
+				"-l",
+				"python2.7",
+				"-fshort-wchar"
+
+
 Robust Monte Carlo Localization for Mobile Robots paper by Sebastian Thrun.
 - http://robots.stanford.edu/papers/thrun.robust-mcl.pdf
 

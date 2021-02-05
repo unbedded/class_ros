@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.xacro": "html",
+        "string": "cpp",
+        "functional": "cpp"
+    }
+}
