@@ -7,5 +7,6 @@
 - [LAB.3 - Go Chaseit!](./chase/README.md)
 - [LAB.4 - Kalman](./localization/README.md)
 - [LAB.5 - Monte Carlo Localaization](./mcl/README.md)
+- [LAB.6 - AMCL: Adaptive Monte Carlo Localaization](./where_am_i/README.md)
 
 s

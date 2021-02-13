@@ -5,6 +5,13 @@
 
 As currently implemented, this node works only with laser scans and laser maps. It could be extended to work with other sensor data. 
 
+# SIMULATION RESULTS
+## AMCL (w/ odem_alpha optimized)
+![](images/localizedRobotConverged.png) 
+## AMCL after 2min (w/ default Alpha param)
+![](images/Localization_final.png) 
+
+
 # SETUP 
 ## Native Installation & Virtual Machine
 

@@ -30,7 +30,7 @@
         args="-urdf -param robot_description -model my_robot 
               -x $(arg x) -y $(arg y) -z $(arg z)
               -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
-  <!--
-  <node name="rviz" pkg="rviz" type="rviz" respawn="false"/>
-  -->
+
+  <!-- START RVIZ -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d /home/spencerbarrett/sw/ros/where_am_i/amcl.rviz" respawn="false"/>
 </launch>
