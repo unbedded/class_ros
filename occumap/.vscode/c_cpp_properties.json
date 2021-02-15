@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "g++ Map Build",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "gnu11",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerArgs": [
+                "-std=c++11 ",
+                "-I/usr/include/python2.7 ",
+                "-lpython2.7"
+            ]
+        }
+    ],
+    "version": 4
+}
