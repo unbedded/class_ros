@@ -8,5 +8,7 @@
 - [LAB.4 - Kalman](./localization/README.md)
 - [LAB.5 - Monte Carlo Localaization](./mcl/README.md)
 - [LAB.6 - AMCL: Adaptive Monte Carlo Localaization](./where_am_i/README.md)
+- [LAB.7 - Occupancy Grid ](./occugrid/README.md)
+- [LAB.7 - Grid SLAM w/ multi sensor ](./gmap/README.md)
 
-s
+
