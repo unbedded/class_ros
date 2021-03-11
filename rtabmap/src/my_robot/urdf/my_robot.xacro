@@ -150,6 +150,32 @@
         <axis xyz="0 1 0" rpy="0 0 0" />
     </joint>
 
+    <link name="camera_link_optical">
+    <inertial>
+        <mass value="0.1" />
+        <origin xyz="0 0 0" rpy=" 0 0 0" />
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+    <collision name='camera_collision'>
+        <origin xyz="0 0 0" rpy=" 0 0 0" />
+        <geometry>
+            <box size="0.03 0.03 0.03" />
+        </geometry>
+    </collision>
+    <visual name='camera_visual'>
+        <origin xyz="0 0 0" rpy=" 0 0 0" />
+        <geometry>
+            <box size="0.03 0.03 0.03" />
+        </geometry>
+    </visual>
+    </link>
+    <joint name="camera_optical_joint" type="fixed">
+        <!-- <origin xyz="0 0 0" rpy="-1.5707 0 -1.5707" /> -->
+        <origin xyz="0.2 0 0.1" rpy="-1.5707 0 -1.5707" />
+        <parent link="chassis" />
+        <child link="camera_link_optical" />
+    </joint>
+
 
     <link name="hokuyo">
     <inertial>
